@@ -44,5 +44,8 @@ class TestCase extends BaseTestCase
             $table->string('email');
             $table->softDeletes();
         });
+
+        require_once __DIR__ . "/../database/migrations/2018_07_17_060329_create_roles_table.php";
+        (new  \CreateRolesTable())->up();
     }
 }
