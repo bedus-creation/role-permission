@@ -5,9 +5,9 @@ namespace Aammui\RolePermission\Tests;
 class RoleTest extends TestCase
 {
     /** @test */
-    public function role_can_be_created()
+    public function role_can_assign_to_a_user()
     {
         $user = User::create(['email' => 'test@example.com']);
-        $this->assertEquals(count(auth()->user()->role), 1);
+        $user->addRole('admin');
     }
 }
