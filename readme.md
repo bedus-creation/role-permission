@@ -1,7 +1,6 @@
-# Introduction
-
-#### Role
-Role can be used to define a group of permission. If a user has a editor role, he/she can edit, delete, publish articles. To attach a permission to a role;
+## Introduction and Core Concepts
+### Role
+Role can be used to define a group of permission. If a user has a editor role, he/she can edit, delete, publish articles. I prefer to use role in most of the cases to allow a group of action.
 ```
 $user->addRole('admin');
 ```
@@ -17,15 +16,12 @@ $role->addResourcePermission('article');
 ```
 It will add create article, read article, update article, delete article permission to the given role. 
 
-#### Permission
-Permission can be used to define a particular action. For example Edit article permission, Read article permission.
-
-#### Deny a particular action:
-Suppose a user has a role ***Editor*** and you want him to deny a publish a article action, then you can do:
+### Permission
+Permission can be used to **deny** a particular action. I assume in most of the cases the actions are associated with roles. So, if read, write, delete article action is associated with a Editor role, then you can deny Editor to delete article by:
+```  
+$user->removePermission('delete article');
 ```
-$user->removePermission('publish article');
-```
-#### Middleware
+### Middleware
 Use either permission or role as a middleware to protect the resources. Use `|` to use multiple role or permission in a  middleware. If both role and permission middleware are defined both middleware should passed to access the resources. Here, you can deny to publish a article even he has got a editor role.
 ```
 Route::group(['middleware' => ['role:system admin|database admin','permission:read article']], function () {
@@ -33,3 +29,23 @@ Route::group(['middleware' => ['role:system admin|database admin','permission:re
 });
 ```
 above can interpret as user should have sytem admin or database admin role **and** read article permission **is not** denied.
+
+## Installation
+```
+composer require aammui/role-permission
+```
+
+## Uses
+Use a trait ```HasRole``` to your user model.
+```
+use Aammui\RolePermission\Traits\HasRole;
+
+class User extends Authenticatable
+{
+    use Notifiable, HasRole;
+}
+```
+and then following api are available to you.
+* ```public function addRole($role): void ```
+* ```public function getRoles(): mixed```
+* ```public function hasGotRole(array $roles): bool```

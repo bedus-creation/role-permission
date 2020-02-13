@@ -2,6 +2,6 @@
 
 namespace Aammui\RolePermission;
 
-class Factory
+class RolePermissionFactory
 {
 }
