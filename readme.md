@@ -5,8 +5,8 @@ Role can be used to define a group of permission. If a user has a editor role, h
 $user->addRole('admin');
 ```  
 * Roles are **case insensetive**. ```$user->addRole('admin');``` and ```$user->addRole('Admin');``` has same meaning.
-* Roles not need to create explicitly. ```$user->addRole('admin');``` This function created a new role **admin** if the given role is not created yet in the database, and then the given role is assign to the given user.
-To add permission to role
+* Roles not need to create explicitly. ```$user->addRole('admin');``` This function creats a new role **admin** if the given role is not created yet in the database, and then the given role is assign to the given user.  
+#### To add permission to role
 ```
 $role->addPermission('read article');
 // or 
