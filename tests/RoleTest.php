@@ -21,4 +21,18 @@ class RoleTest extends TestCase
         $user->addRole('admin');
         $this->assertTrue($user->hasGotRole(['admin']));
     }
+
+    /** @test */
+    public function roles_and_permission_are_case_insensetive()
+    {
+        $user = User::create(['email' => 'test@example.com']);
+        $user->addRole('admin');
+        $this->assertTrue($user->hasGotRole('Admin'));
+
+        $user->addRole(['admin', 'System admin']);
+        $this->assertEquals(['admin', 'system admin'], $user->refresh()->getRoles());
+
+        $this->assertEquals(2, Role::count());
+        // admin and system admin, No multiple same role will be assigned. 
+    }
 }

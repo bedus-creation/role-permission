@@ -3,7 +3,9 @@
 Role can be used to define a group of permission. If a user has a editor role, he/she can edit, delete, publish articles. I prefer to use role in most of the cases to allow a group of action.
 ```
 $user->addRole('admin');
-```
+```  
+* Roles are **case insensetive**. ```$user->addRole('admin');``` and ```$user->addRole('Admin');``` has same meaning.
+* Roles not need to create explicitly. ```$user->addRole('admin');``` This function created a new role **admin** if the given role is not created yet in the database, and then the given role is assign to the given user.
 To add permission to role
 ```
 $role->addPermission('read article');
@@ -34,6 +36,11 @@ above can interpret as user should have sytem admin or database admin role **and
 ```
 composer require aammui/role-permission
 ```
+## Publish the assests and run migrations 
+```
+php artisan vendor:publish --provider="Aammui\RolePermission\RolePermissionServiceProvider"
+php artisan migrate
+```
 
 ## Uses
 Use a trait ```HasRole``` to your user model.
@@ -46,6 +53,8 @@ class User extends Authenticatable
 }
 ```
 and then following api are available to you.
-* ```public function addRole($role): void ```
-* ```public function getRoles(): mixed```
+* ```public function addRole($role): void ```  
+This **sync** the roles, if a user has admin role and then you send only editor, it will remove admin role and then user will only have editor role. Send all roles to update the roles.
+* ```public function getRoles(): array```  
+It returns roles in array.
 * ```public function hasGotRole(array $roles): bool```

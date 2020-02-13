@@ -14,7 +14,7 @@ trait HasRole
     public function addRole($role)
     {
         $role = collect($role)->map(function ($item) {
-            return Role::firstOrCreate(["name" => $item]);
+            return Role::firstOrCreate(["name" => strtolower($item)]);
         })->pluck('id');
 
         return $this->role()->sync($role);
@@ -22,18 +22,24 @@ trait HasRole
 
     public function getRoles()
     {
-        return $this->role->map(function ($item) {
-            return $item->name;
+        return collect($this->role)->map(function ($item) {
+            return strtolower($item->name);
         })->toArray();
     }
 
     /**
      * Check if a user has got a given role
-     * @param array $roles 
+     * @param mixed $roles 
      * @return bool 
      */
-    public function hasGotRole(array $roles): bool
+    public function hasGotRole($roles): bool
     {
+        $roles = collect($roles)
+            ->map(function ($item) {
+                return strtolower($item);
+            })->toArray();
+        // dump($this->getRoles());
+        // dump(count(array_intersect($roles, $this->getRoles())) > 0);
         return count(array_intersect($this->getRoles(), $roles)) > 0;
     }
 }
