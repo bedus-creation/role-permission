@@ -1,5 +1,5 @@
 {
-    "name": "aammui/role-permisssion",
+    "name": "aammui/role-permission",
     "description": "Role permission system for laravel",
     "license": "MIT",
     "authors": [
@@ -30,7 +30,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Aammui\\RolePermission\\AppServiceProvider"
+                "Aammui\\RolePermission\\RolePermissionServiceProvider"
             ]
         }
     }
