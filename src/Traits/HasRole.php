@@ -22,7 +22,7 @@ trait HasRole
 
     public function getRoles()
     {
-        return collect($this->role)->map(function ($item) {
+        return collect($this->role()->get())->map(function ($item) {
             return strtolower($item->name);
         })->toArray();
     }
@@ -38,8 +38,6 @@ trait HasRole
             ->map(function ($item) {
                 return strtolower($item);
             })->toArray();
-        // dump($this->getRoles());
-        // dump(count(array_intersect($roles, $this->getRoles())) > 0);
         return count(array_intersect($this->getRoles(), $roles)) > 0;
     }
 }

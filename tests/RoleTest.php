@@ -35,4 +35,15 @@ class RoleTest extends TestCase
         $this->assertEquals(2, Role::count());
         // admin and system admin, No multiple same role will be assigned. 
     }
+
+    /** @test */
+    public function role_can_be_accessed_from_logined_user()
+    {
+        $user = User::create(['email' => 'test@example.com']);
+        $user->addRole('admin');
+        $this->be($user);
+
+        auth()->user()->addRole('admin');
+        $this->assertTrue($user->hasGotRole('admin'));
+    }
 }
