@@ -25,6 +25,13 @@ $user->removePermission('delete article');
 ```
 ### Middleware
 Use either permission or role as a middleware to protect the resources. Use `|` to use multiple role or permission in a  middleware. If both role and permission middleware are defined both middleware should passed to access the resources. Here, you can deny to publish a article even he has got a editor role.
+##### Add middlewire in the route middlewire section. ```App\Http\Kernel.php```
+```
+    protected $routeMiddleware = [
+        'role' => \Aammui\RolePermission\Middleware\Role::class,
+    ]
+```
+##### Use Middlewire in anywire
 ```
 Route::group(['middleware' => ['role:system admin|database admin','permission:read article']], function () {
     //
