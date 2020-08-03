@@ -51,11 +51,6 @@ above can interpret as user should have sytem admin or database admin role **and
 ```
 composer require aammui/role-permission
 ```
-## Publish the assests and run migrations 
-```
-php artisan vendor:publish --provider="Aammui\RolePermission\RolePermissionServiceProvider"
-php artisan migrate
-```
 
 #### Laravel Compatibility 
 | Laravel Version | Role Permission Version | Installation |
@@ -63,6 +58,14 @@ php artisan migrate
 | 5.x | 0.7 | composer require aammui/role-permission:0.7 |
 | 6.x | 0.7 | composer require aammui/role-permission:0.7 |
 | 6.x | 0.7 | composer require aammui/role-permission:0.7 |
+
+
+
+#### Publish the assests and run migrations 
+```
+php artisan vendor:publish --provider="Aammui\RolePermission\RolePermissionServiceProvider"
+php artisan migrate
+```
 
 
 ## Uses
