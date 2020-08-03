@@ -1,4 +1,12 @@
 ## Introduction and Core Concepts
+
+
+### Content
+1. [Introduction](https://github.com/bedus-creation/role-permission#introduction)
+2. [Installtion](https://github.com/bedus-creation/role-permission#installation)
+
+
+## Introduction 
 ### Role
 Role can be used to define a group of permission. If a user has a editor role, he/she can edit, delete, publish articles. I prefer to use role in most of the cases to allow a group of action.
 ```
@@ -48,6 +56,14 @@ composer require aammui/role-permission
 php artisan vendor:publish --provider="Aammui\RolePermission\RolePermissionServiceProvider"
 php artisan migrate
 ```
+
+#### Laravel Compatibility 
+| Laravel Version | Role Permission Version | Installation |
+| -- | -- | --- |
+| 5.x | 0.7 | composer require aammui/role-permission:0.7 |
+| 6.x | 0.7 | composer require aammui/role-permission:0.7 |
+| 6.x | 0.7 | composer require aammui/role-permission:0.7 |
+
 
 ## Uses
 Use a trait ```HasRole``` to your user model.
