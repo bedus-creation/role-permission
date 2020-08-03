@@ -3,7 +3,7 @@
 
 ### Content
 1. [Introduction](https://github.com/bedus-creation/role-permission#introduction)
-2. [Installtion](https://github.com/bedus-creation/role-permission#installation)
+2. [Installation](https://github.com/bedus-creation/role-permission#installation)
 
 
 ## Introduction 
