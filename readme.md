@@ -89,25 +89,25 @@ It returns roles in array.
 It throws following exception as below.
 | Exception | Remarks |
 | --- | --- |
-| Aammui\RolePermission\Exception\UserNotLogin | User is not logged in yet. |
-| Aammui\RolePermission\Exception\RoleDoesNotExist | A function or route is protected by a role, and logged in user doesn't have that role yet. |
+| Aammui\RolePermission\Exception\UserNotLoginException | User is not logged in yet. |
+| Aammui\RolePermission\Exception\RoleDoesNotExistException | A function or route is protected by a role, and logged in user doesn't have that role yet. |
 
 #### UseCase: Exception uses for user redirection.
 Suppose we want to redirect not logged in user to login page, which can be done using handling exception in ```app\Exceptions\Handler.php``` class. The purpose of this exception make available is to support full customization. For example you may want to redirect to login page for that user whom don't have right role, or you simply only want to show 403 page.
 ```php
 // App\Exceptions\Handler.php;
-use Aammui\RolePermission\Exception\UserNotLogin;
-use Aammui\RolePermission\Exception\RoleDoesNotExist;
+use Aammui\RolePermission\Exception\UserNotLoginException;
+use Aammui\RolePermission\Exception\RoleDoesNotExistException;
 
 ....
 
 public function render($request, Throwable $exception)
 {
-    if ($exception instanceof UserNotLogin) {
+    if ($exception instanceof UserNotLoginException) {
         return redirect('/login');
     }
 
-    if ($exception instanceof RoleDoesNotExist) {
+    if ($exception instanceof RoleDoesNotExistException) {
         session()->flash("User doesn't have right role and permission.");
         return redirect()->back();
     }
