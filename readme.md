@@ -104,13 +104,15 @@ use Aammui\RolePermission\Exception\RoleDoesNotExistException;
 public function render($request, Throwable $exception)
 {
     if ($exception instanceof UserNotLoginException) {
-        return redirect('/login');
+        return redirect('/login')
+            ->with('error', $exception->getMessage());
+    }
+    
+    if ($exception instanceof RoleDoesNotExistException) {
+        return redirect('/login')
+            ->with('error', $exception->getMessage());
     }
 
-    if ($exception instanceof RoleDoesNotExistException) {
-        session()->flash("User doesn't have right role and permission.");
-        return redirect()->back();
-    }
     return parent::render($request, $exception);
 }
 ```
