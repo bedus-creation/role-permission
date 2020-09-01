@@ -84,3 +84,33 @@ This **sync** the roles, if a user has admin role and then you send only editor,
 * ```public function getRoles(): array```  
 It returns roles in array.
 * ```public function hasGotRole(array $roles): bool```
+
+## Exception
+It throws following exception as below.
+| Exception | Remarks |
+| --- | --- |
+| Aammui\RolePermission\Exception\UserNotLogin | User is not logged in yet. |
+| Aammui\RolePermission\Exception\RoleDoesNotExist | A function or route is protected by a role, and logged in user doesn't have that role yet. |
+
+#### UseCase: Exception uses for user redirection.
+Suppose we want to redirect not logged in user to login page, which can be done using handling exception in ```app\Exceptions\Handler.php``` class. The purpose of this exception make available is to support full customization. For example you may want to redirect to login page for that user whom don't have right role, or you simply only want to show 403 page.
+```php
+// App\Exceptions\Handler.php;
+use Aammui\RolePermission\Exception\UserNotLogin;
+use Aammui\RolePermission\Exception\RoleDoesNotExist;
+
+....
+
+public function render($request, Throwable $exception)
+{
+    if ($exception instanceof UserNotLogin) {
+        return redirect('/login');
+    }
+
+    if ($exception instanceof RoleDoesNotExist) {
+        session()->flash("User doesn't have right role and permission.");
+        return redirect()->back();
+    }
+    return parent::render($request, $exception);
+}
+```

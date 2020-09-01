@@ -2,7 +2,9 @@
 
 namespace Aammui\RolePermission\Middleware;
 
+use Aammui\RolePermission\Exception\RoleDoesNotExistException;
 use Aammui\RolePermission\Exception\UnauthorizedException;
+use Aammui\RolePermission\Exception\UserNotLoginException;
 use Illuminate\Support\Facades\Auth;
 use Closure;
 
@@ -18,17 +20,15 @@ class Role
      */
     public function handle($request, Closure $next, $role = null)
     {
-
         if (Auth::guest()) {
-            throw UnauthorizedException::notLoggedIn();
+            throw new UserNotLoginException();
         }
 
         $role = $role ?? 'guest';
         $roles = explode('|', $role);
-        // dd($roles);
-        // dd(auth()->user()->hasGotRole($roles));
+
         if (!auth()->user()->hasGotRole($roles)) {
-            throw UnauthorizedException::forRoles();
+            throw new RoleDoesNotExistException();
         }
 
         return $next($request);
