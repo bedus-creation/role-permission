@@ -33,7 +33,7 @@ class RoleTest extends TestCase
         $this->assertEquals(['admin', 'system admin'], $user->refresh()->getRoles());
 
         $this->assertEquals(2, Role::count());
-        // admin and system admin, No multiple same role will be assigned. 
+        // admin and system admin, No multiple same role will be assigned.
     }
 
     /** @test */

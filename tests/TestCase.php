@@ -7,7 +7,6 @@ use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {
-
     public function setUp(): void
     {
         parent::setUp();
@@ -26,10 +25,10 @@ class TestCase extends BaseTestCase
         // Setup default database to use sqlite :memory:
         $app['config']->set('database.default', 'testbench');
         $app['config']->set('database.connections.testbench', [
-            'driver'   => 'sqlite',
+            'driver' => 'sqlite',
             'database' => ':memory:',
             'foreign_key_constraints' => true,
-            'prefix'   => '',
+            'prefix' => '',
         ], 'constraints_set');
     }
 

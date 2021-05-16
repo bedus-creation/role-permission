@@ -3,19 +3,25 @@
 namespace Aammui\RolePermission\Middleware;
 
 use Aammui\RolePermission\Exception\RoleDoesNotExistException;
-use Aammui\RolePermission\Exception\UnauthorizedException;
 use Aammui\RolePermission\Exception\UserNotLoginException;
-use Illuminate\Support\Facades\Auth;
 use Closure;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class Role
+ *
+ * @package Aammui\RolePermission\Middleware
+ */
 class Role
 {
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string  $role
+     * @param Request $request
+     * @param Closure $next
+     * @param string  $role
+     *
      * @return mixed
      */
     public function handle($request, Closure $next, $role = null)
@@ -27,7 +33,7 @@ class Role
         $role = $role ?? 'guest';
         $roles = explode('|', $role);
 
-        if (!auth()->user()->hasGotRole($roles)) {
+        if (! auth()->user()->hasGotRole($roles)) {
             throw new RoleDoesNotExistException();
         }
 

@@ -3,10 +3,10 @@
 namespace Aammui\RolePermission\Tests;
 
 use Aammui\RolePermission\Exception\RoleDoesNotExistException;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Aammui\RolePermission\Exception\UserNotLoginException;
 use Aammui\RolePermission\Middleware\Role as RoleMiddleware;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class RoleMiddlewareTest extends TestCase
@@ -45,9 +45,9 @@ class RoleMiddlewareTest extends TestCase
         }, $parameter)->status();
     }
 
-    /** 
+    /**
      * A guest cannot access a route protected by rolemiddleware
-     * 
+     *
      * @test
      */
     public function UserNotLogin_exception_is_thrown_when_user_not_login()
@@ -59,10 +59,10 @@ class RoleMiddlewareTest extends TestCase
         }, 'testRole')->status();
     }
 
-    /** 
+    /**
      * A User cannot access a route protected by rolemiddleware
-     * 
-     * @test 
+     *
+     * @test
      */
     public function RoleDoesNotExist_exception_is_thrown_when_user_not_login()
     {
