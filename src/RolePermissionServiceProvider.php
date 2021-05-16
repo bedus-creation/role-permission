@@ -15,11 +15,11 @@ class RolePermissionServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../config/role-permission.php' => config_path('role-permission.php')
+            __DIR__ . '/../config/role-permission.php' => config_path('role-permission.php'),
         ], 'config');
 
         $this->publishes([
-            __DIR__ . '/../database/migrations/' => database_path('migrations')
+            __DIR__ . '/../database/migrations/' => database_path('migrations'),
         ], 'migrations');
     }
 

@@ -11,7 +11,7 @@ trait HasRole
         return $this->belongsToMany(Role::class);
     }
 
-    public function addRole($role)
+    public function addRole($role): array
     {
         $role = collect($role)->map(function ($item) {
             return Role::firstOrCreate(["name" => strtolower($item)]);
@@ -20,7 +20,10 @@ trait HasRole
         return $this->role()->sync($role);
     }
 
-    public function getRoles()
+    /**
+     * @return array
+     */
+    public function getRoles(): array
     {
         return collect($this->role()->get())->map(function ($item) {
             return strtolower($item->name);
@@ -29,8 +32,10 @@ trait HasRole
 
     /**
      * Check if a user has got a given role
-     * @param mixed $roles 
-     * @return bool 
+     *
+     * @param mixed $roles
+     *
+     * @return bool
      */
     public function hasGotRole($roles): bool
     {
@@ -38,6 +43,7 @@ trait HasRole
             ->map(function ($item) {
                 return strtolower($item);
             })->toArray();
+
         return count(array_intersect($this->getRoles(), $roles)) > 0;
     }
 }
