@@ -52,13 +52,13 @@ above can interpret as user should have sytem admin or database admin role **and
 composer require aammui/role-permission
 ```
 
-#### Laravel Compatibility 
+##### Laravel Compatibility 
 | Laravel Version | Role Permission Version | Installation |
-| --- | --- | --- |
-| 7.x | 1.0.0 | ```composer require aammui/role-permission:1.0.0``` |
-| 6.x | 0.7 | ```composer require aammui/role-permission:0.7``` |
-| 5.x | 0.7 | ```composer require aammui/role-permission:0.7``` |
-
+|-----------------|-------------------------| --- |
+| 9.x             | 3.0.0 | ```composer require aammui/role-permission:3.0.0``` |
+| 8.x             | 2.0.0 | ```composer require aammui/role-permission:2.0.0``` |
+| 7.x             | 1.0.0 | ```composer require aammui/role-permission:1.0.0``` |
+| 6.x, 5.x        | 0.7   | ```composer require aammui/role-permission:0.7``` |
 
 
 #### Publish the assests and run migrations 
