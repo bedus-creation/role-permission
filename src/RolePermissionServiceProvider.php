@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 
 class RolePermissionServiceProvider extends ServiceProvider
 {
-
     /**
      * Bootstrap services.
      *
