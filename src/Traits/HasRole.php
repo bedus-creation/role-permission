@@ -3,10 +3,11 @@
 namespace Aammui\RolePermission\Traits;
 
 use Aammui\RolePermission\Models\Role;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait HasRole
 {
-    public function role()
+    public function role(): BelongsToMany
     {
         return $this->belongsToMany(Role::class);
     }
